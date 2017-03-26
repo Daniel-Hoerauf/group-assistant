@@ -5,6 +5,7 @@ import subprocess
 import random
 import twitter
 import sys
+import weatherTest
 from os import getenv
 
 def answer(question):
@@ -58,12 +59,7 @@ def eight_ball(options):
     return ans
 
 def weather(city):
-    proc = subprocess.Popen(['weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
-    if(proc.communicate()[0]):
-        return proc.communicate()[0]
-    else:
-        return "City not found. It's probably raining meatballs. Please try again."
+    return weatherTest.main("'" + city + "'")
 
 def math(expression):
     ans = eval(expression)
