@@ -1,4 +1,4 @@
-from .response import answer, eight_ball, last_tweet, weather, math, news, image
+from .response import answer, eight_ball, last_tweet, weather, math, news, image, search, auto, video
 
 fn_map = {}
 fn_map['/answer'] = answer
@@ -8,5 +8,8 @@ fn_map['/weather'] = weather
 fn_map['/math'] = math
 fn_map['/news'] = news
 fn_map['/image'] = image
+fn_map['/search'] = search
+fn_map['/auto'] = auto
+fn_map['/video'] = video
 
 from .handler import process

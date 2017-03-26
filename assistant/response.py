@@ -81,7 +81,7 @@ def news(topic):
         'count': '10',
         'offset': '0',
         'mkt': 'en-us',
-        'safeSearch': 'Moderate',
+        'safeSearch': 'Off',
     })
     try:
          conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
@@ -105,7 +105,7 @@ def image(item):
         'count': '10',
         'offset': '0',
         'mkt': 'en-us',
-        'safeSearch': 'Moderate',
+        'safeSearch': 'Off',
     })
 
     try:
@@ -114,6 +114,77 @@ def image(item):
         response = conn.getresponse()
         data = json.loads(response.read().decode())
         conn.close()
+        return data['value'][0]['thumbnailUrl']
+    except Exception as e:
+        print(e)
+
+def search(topic):
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'q': topic,
+        'count': '10',
+        'offset': '0',
+        'mkt': 'en-us',
+        'safesearch': 'Off',
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+        conn.request("GET", "/bing/v5.0/search?%s" % params, "{body}", headers)
+        response = conn.getresponse()
+        data = json.loads(response.read().decode())
+        conn.close()
+        return data['value'][0]['snippet']
+    except Exception as e:
+        print(e)
+
+def video(topic):
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'q': topic,
+        'count': '10',
+        'offset': '0',
+        'mkt': 'en-us',
+        'safeSearch': 'Off',
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+        conn.request("GET", "/bing/v5.0/videos/search?%s" % params, "{body}", headers)
+        response = conn.getresponse()
+        data = json.loads(response.read().decode())
+        conn.close()
         return data['value'][0]['contentUrl']
+    except Exception as e:
+        print(e)
+
+def auto(word):
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': '{subscription key}',
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'q': 'bill g',
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+        conn.request("GET", "/bing/v5.0/suggestions/?%s" % params, "{body}", headers)
+        response = conn.getresponse()
+        data = json.loads(response.read().decode())
+        conn.close()
+        return data['suggestionGroups']['searchSuggestions']['displayText']
     except Exception as e:
         print(e)
