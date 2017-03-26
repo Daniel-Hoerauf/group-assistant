@@ -171,12 +171,12 @@ def video(topic):
 def auto(word):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': '{subscription key}',
+        'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
     }
 
     params = urllib.parse.urlencode({
         # Request parameters
-        'q': 'bill g',
+        'q':  word,
     })
 
     try:
