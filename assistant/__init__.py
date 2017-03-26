@@ -9,7 +9,6 @@ fn_map['/math'] = math
 fn_map['/news'] = news
 fn_map['/image'] = image
 fn_map['/search'] = search
-fn_map['/auto'] = auto
 fn_map['/video'] = video
 
 from .handler import process

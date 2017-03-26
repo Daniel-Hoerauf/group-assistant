@@ -167,24 +167,3 @@ def video(topic):
         return data['value'][0]['contentUrl']
     except Exception as e:
         print(e)
-
-def auto(word):
-    headers = {
-        # Request headers
-        'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
-    }
-
-    params = urllib.parse.urlencode({
-        # Request parameters
-        'q':  word,
-    })
-
-    try:
-        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
-        conn.request("GET", "/bing/v5.0/suggestions/?%s" % params, "{body}", headers)
-        response = conn.getresponse()
-        data = json.loads(response.read().decode())
-        conn.close()
-        return data['suggestionGroups']['searchSuggestions'][0]['displayText']
-    except Exception as e:
-        print(e)
