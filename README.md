@@ -13,3 +13,6 @@ Try the following:
 * /ball will miranda kerr marry me
 * /math 3*(290/2-134+6*2)
 * /news trump
+* /image tardigrade
+* /search elon musk
+* /video bill
