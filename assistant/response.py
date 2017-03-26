@@ -139,7 +139,7 @@ def search(topic):
         response = conn.getresponse()
         data = json.loads(response.read().decode())
         conn.close()
-        return data['webPages']['value'][0]['snippet']
+        return data['webPages']['value'][0]['url']
     except Exception as e:
         print(e)
 
@@ -185,6 +185,6 @@ def auto(word):
         response = conn.getresponse()
         data = json.loads(response.read().decode())
         conn.close()
-        return data['suggestionGroups']['searchSuggestions']['displayText']
+        return data['suggestionGroups']['searchSuggestions'][0]['displayText']
     except Exception as e:
         print(e)
