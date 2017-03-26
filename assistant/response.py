@@ -31,7 +31,7 @@ def last_tweet(username):
     return status_addr
 
 def eight_ball(options):
-    '''
+    '''s
     Given a list of quote enclosed options, will choose one
     '''
     choices = [ 'It is certain',
@@ -61,7 +61,7 @@ def eight_ball(options):
 def weather(city):
     weather = Weather()
 
-    location = weather.lookup_by_location("'" + city + "'")
+    location = weather.lookup_by_location("'" + str(city) + "'")
     condition = location.forecast()[0]
 
     return condition['text'] + ' with high of ' + condition['high'] + ' and low of ' + condition['low']
