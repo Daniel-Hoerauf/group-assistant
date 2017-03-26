@@ -4,6 +4,8 @@ All of the individual methods that the assistant has
 import subprocess
 import random
 import twitter
+import sys
+from weather import Weather
 from os import getenv
 
 def answer(question):
@@ -55,3 +57,11 @@ def eight_ball(options):
 
     ans = random.choice(choices)
     return ans
+
+def weather(city):
+    weather = Weather()
+
+    location = weather.lookup_by_location("'" + city + "'")
+    condition = location.forecast()[0]
+
+    return condition['text'] + ' with high of ' + condition['high'] + ' and low of ' + condition['low']
