@@ -59,7 +59,8 @@ def eight_ball(options):
     return ans
 
 def weather(city):
-    return weatherTest.main("'" + city + "'")
+    proc = subprocess.Popen(['weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return proc.communicate()[0]
 
 def math(expression):
     ans = eval(expression)
