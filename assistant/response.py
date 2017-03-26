@@ -5,7 +5,6 @@ import subprocess
 import random
 import twitter
 import sys
-from weather import Weather
 from os import getenv
 
 def answer(question):
@@ -72,6 +71,6 @@ def weather(city):
 def math(expression):
     ans = eval(expression)
     if ans:
-        return eval
+        return ans
     else:
         return 'That is some nasty math. Please try something else.'

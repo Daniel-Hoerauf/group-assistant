@@ -16,6 +16,8 @@ def healthcheck():
 @app.route('/api/message/', methods=['POST'])
 def listen_for():
     """ Where all incoming messages will be processed"""
+    print("REACHED VIEW")
     bot_id = get_env_var('BOT_ID')
     process(request.json, bot_id)
+    print("LEAVING VIEW")
     return Response(response='Message Received', status=200)
