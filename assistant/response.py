@@ -64,4 +64,14 @@ def weather(city):
     location = weather.lookup_by_location("'" + str(city) + "'")
     condition = location.forecast()[0]
 
-    return condition['text'] + ' with high of ' + condition['high'] + ' and low of ' + condition['low']
+    if(condition):
+        return condition['text'] + ' with high of ' + condition['high'] + ' and low of ' + condition['low']
+    else:
+        return "City not found. It's probably raining meatballs. Please try again."
+
+def math(expression):
+    ans = eval(expression)
+    if ans:
+        return eval
+    else:
+        return 'That is some nasty math. Please try something else.'
