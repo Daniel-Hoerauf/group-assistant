@@ -3,6 +3,8 @@ All of the individual methods that the assistant has
 """
 import subprocess
 import random
+import twitter
+from os import getenv
 
 def answer(question):
     '''
@@ -14,6 +16,17 @@ def answer(question):
     else:
         return "No answers could be divined. Please try again"
 
+
+def last_tweet(username):
+    username = username.strip().split(' ')[0]
+    key = getenv('CONSUMER_KEY')
+    secret = getenv('SECRET_KEY')
+    token = getenv('ACCESS_TOKEN')
+    token_secret = getenv('ACCESS_SECRET')
+    api = twitter.Api(consumer_key=key, consumer_secret=secret, access_token_key=token, access_token_secret=token_secret)
+    response = api.GetUserTimeline(screen_name=username)[0]
+    status_addr = 'https://twitter.com/{}/status/{}'.format(username, response.id)
+    return status_addr
 
 def eight_ball(options):
     '''
