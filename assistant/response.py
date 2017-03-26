@@ -5,6 +5,7 @@ import subprocess
 import random
 import twitter
 import sys
+import http.client, urllib.request, urllib.parse, urllib.error, base64
 from os import getenv
 
 def answer(question):
@@ -67,3 +68,28 @@ def math(expression):
         return ans
     else:
         return 'That is some nasty math. Please try something else.'
+
+def news(topic):
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'q': topic,
+        'count': '10',
+        'offset': '0',
+        'mkt': 'en-us',
+        'safeSearch': 'Moderate',
+    })
+
+    try:
+        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+        conn.request("GET", "/bing/v5.0/news/search?%s" % params, "{body}", headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+    except Exception as e:
+        print("SAD!")
