@@ -139,7 +139,7 @@ def search(topic):
         response = conn.getresponse()
         data = json.loads(response.read().decode())
         conn.close()
-        return data['value'][0]['snippet']
+        return data['webPages']['value'][0]['snippet']
     except Exception as e:
         print(e)
 
