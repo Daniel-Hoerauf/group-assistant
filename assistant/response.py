@@ -5,7 +5,6 @@ import subprocess
 import random
 import twitter
 import sys
-import .weatherTest
 from os import getenv
 
 def answer(question):
