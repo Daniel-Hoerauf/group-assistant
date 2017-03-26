@@ -89,7 +89,7 @@ def news(topic):
         conn.request("GET", "/bing/v5.0/news/search?%s" % params, "{body}", headers)
         response = conn.getresponse()
         data = response.read()
-        print(data)
+        return "Works!"
         conn.close()
     except Exception as e:
-        print("SAD!")
+        return "SAD!"
