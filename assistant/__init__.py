@@ -7,5 +7,6 @@ fn_map['/tweet'] = last_tweet
 fn_map['/weather'] = weather
 fn_map['/math'] = math
 fn_map['/news'] = news
+fn_map['/image'] = image
 
 from .handler import process
