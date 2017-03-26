@@ -1,4 +1,4 @@
-from .response import answer, eight_ball, last_tweet, weather, math, news
+from .response import answer, eight_ball, last_tweet, weather, math, news, image
 
 fn_map = {}
 fn_map['/answer'] = answer
