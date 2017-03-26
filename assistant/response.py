@@ -58,13 +58,10 @@ def eight_ball(options):
     return ans
 
 def weather(city):
-    weather = Weather()
+    proc = subprocess.Popen(['python', 'weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
-    location = weather.lookup_by_location("'" + str(city) + "'")
-    condition = location.forecast()[0]
-
-    if(condition):
-        return condition['text'] + ' with high of ' + condition['high'] + ' and low of ' + condition['low']
+    if(proc.communicate()[0]):
+        return proc.communicate()[0]
     else:
         return "City not found. It's probably raining meatballs. Please try again."
 
