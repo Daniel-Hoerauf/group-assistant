@@ -70,7 +70,6 @@ def math(expression):
         return 'That is some nasty math. Please try something else.'
 
 def news(topic):
-    return str(getenv('BING_SEARCH'))
     headers = {
         # Request headers
         'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
