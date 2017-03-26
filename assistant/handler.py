@@ -11,7 +11,7 @@ def process(msg_json, bot_id):
     if needed
     '''
     first_word = msg_json['text'].split(' ')[0]
-    remaining = msg_json['text'][len(first_word)]
+    remaining = msg_json['text'][len(first_word):]
     call = fn_map.get(first_word)
     if call:
         result = call(remaining)
@@ -20,5 +20,4 @@ def process(msg_json, bot_id):
             'text': result
         }
         req = requests.post('https://api.groupme.com/v3/bots/post', data=api)
-        print(req)
     return None
