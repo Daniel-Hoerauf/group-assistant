@@ -58,7 +58,7 @@ def eight_ball(options):
     return ans
 
 def weather(city):
-    proc = subprocess.Popen(['python', 'weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    proc = subprocess.Popen(['weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     if(proc.communicate()[0]):
         return proc.communicate()[0]
