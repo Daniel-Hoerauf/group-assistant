@@ -5,6 +5,7 @@ import subprocess
 import random
 import twitter
 import sys
+import json
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 from os import getenv
 
@@ -70,27 +71,42 @@ def math(expression):
         return 'That is some nasty math. Please try something else.'
 
 def news(topic):
-    return str(getenv('BING_SEARCH'))
     headers = {
         # Request headers
         'Ocp-Apim-Subscription-Key': getenv('BING_SEARCH'),
     }
-
     params = urllib.parse.urlencode({
-        # Request parameters
+    # Request parameters
         'q': topic,
         'count': '10',
         'offset': '0',
         'mkt': 'en-us',
         'safeSearch': 'Moderate',
     })
-
     try:
-        conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
-        conn.request("GET", "/bing/v5.0/news/search?%s" % params, "{body}", headers)
-        response = conn.getresponse()
-        data = response.read()
-        return "Works!"
-        conn.close()
+         conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+         conn.request("GET", "/bing/v5.0/news/search?%s" % params, "{body}", headers)
+         response = conn.getresponse()
+         data = json.loads(response.read().decode())
+         conn.close()
+         return data['value'][0]['url']
     except Exception as e:
-        return "SAD!"
+        print(e)
+   # params = urllib.parse.urlencode({
+        # Request parameters
+      #  'q': topic,
+     #   'count': '10',
+    #    'offset': '0',
+   #     'mkt': 'en-us',
+  #      'safeSearch': 'Moderate',
+ #   })
+#
+  #  try:
+  #      conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+  #      conn.request("GET", "/bing/v5.0/news/search?%s" % params, "{body}", headers)
+  #      response = conn.getresponse()
+  #      data = json.loads(str(response.read()))
+  #      return str(data)
+  #      conn.close()
+   #  except Exception as e:
+        # return str(e)
