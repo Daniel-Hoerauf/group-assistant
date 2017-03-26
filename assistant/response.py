@@ -58,8 +58,8 @@ def eight_ball(options):
     return ans
 
 def weather(city):
-    proc = subprocess.Popen(['/home/ubuntu/group-assistant/assistant/weatherTest.py',  "'" + city + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    return proc.communicate()[0]
+    proc = subprocess.Popen(['/home/ubuntu/group-assistant/assistant/weatherTest.py',  "'" + city.strip() + "'"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return proc.communicate()[0]    
 
 def math(expression):
     ans = eval(expression)
